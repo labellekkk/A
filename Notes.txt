@@ -1,0 +1,21 @@
+
+** Problem Decomposition **
+
+ [1]   - goToWall
+       - goToDoor
+       - exit through the door
+       -  //goToWall above
+       - //goToWall above
+
+
+// No.2 method is better
+
+ [2]   - goTONewspaper  ----goToWall
+                        ----goToDoor
+                        ----exitThroughTheDoor
+
+       - pickUpNewspaper -----
+
+
+       - comeBackToOrigin -----goToWall
+                          -----goToWall
