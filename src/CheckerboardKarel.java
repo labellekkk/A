@@ -4,62 +4,75 @@ goUpTONextRow
 //goOneRow
 */
 
+/*
+    putTheCheckerInALine
+    getReadyForNextLine
+
+    */
 import stanford.karel.Karel;
 
 public class CheckerboardKarel extends Karel {
 
     public void run() {
-        putBeeper();
-        goOneRow();
 
-
-    }
-
-    void completeCheckerBoard(){
-        putBeeper();
-        goOneRow();
-        goUpToNextRow();
-
+        completelyPutTheCheckers();
 
     }
 
-    void goOneRow() {
+    void completelyPutTheCheckers(){
+        putTheCheckersInARow();
+        while (leftIsClear()) {
+            getReadyForNextRow();
+            putTheCheckersInARow();
+            if (rightIsClear()){
+                getReadyForNextRow();
+                putTheCheckersInARow();
+
+
+            }else{
+                turnAround();
+            }
+        }
+        if (frontIsBlocked()){
+            turnRight();
+        }
+    }
+
+    void putTheCheckersInARow() {
+        putBeeper();
 
         while (frontIsClear()) {
             move();
-            if(noBeepersPresent()) {
+            if (frontIsClear()) {
                 move();
                 putBeeper();
-                if (frontIsBlocked()) {
-                    turnLeft();
-                }
-
 
             }
         }
     }
+        void  getReadyForNextRow() {
+            if (facingEast()) {
+                turnLeft();
+                move();
+                turnLeft();
+            } else {
+                turnRight();
+                move();
+                turnRight();
+            }
+
+        }
 
 
-    void goUpToNextRow(){
+        void turnRight(){
+            turnLeft();
+            turnLeft();
+            turnLeft();
 
-        turnLeft();
-        move();
-        turnLeft();
+        }
 
-    }
-
-    void turnAround(){
-        turnLeft();
-        turnLeft();
-    }
-
-
-
-    void turnRight(){
-        turnLeft();
-        turnLeft();
-        turnLeft();
-    }
+        void turnAround(){
+            turnLeft();
+            turnRight();
+        }
 }
-
-

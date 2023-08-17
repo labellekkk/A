@@ -4,33 +4,29 @@ public class MidpointFindingKarel extends Karel {
 
     public void run() {
 
-            putBeeperInTwoCorner();
-
-
-            
-
-
-
-
-    }
-
-
-    void midPointFinding(){
         putBeeperInTwoCorner();
-        turnAround();
-                                                                                                /* for (int i = 0; i <8 ; i++) {
-
-                                                                                            while (leftIsBlocked()) {
-                                                                                                moveBeeperInToMiddle();
-                                                                                                move();
-                                                                                                while (frontIsBlocked()) {
-                                                                                                    move();
-                                                                                                }
-                                                                                            }
-                                                                                            moveBeeperInToMiddle();
-                                                                                            move();*/
-
+        midPointFinding();
     }
+
+    void midPointFinding() {
+
+        while (frontIsBlocked()){
+            turnAround();
+            while (beepersPresent()) {
+                moveBeeperInToMiddle();
+                move();
+                if (noBeepersPresent()) {
+                    move();
+                }
+            }
+            if (beepersPresent()){
+                moveBeeperInToMiddle();
+            }
+            move();
+            moveBeeperInToMiddle();
+        }
+    }
+
     void putBeeperInTwoCorner(){
         putBeeper();
         while (frontIsClear()){
@@ -59,15 +55,6 @@ public class MidpointFindingKarel extends Karel {
         turnLeft();
         turnLeft();
     }
-
-
-
-
-
-
-
-
-
 }
 
 
